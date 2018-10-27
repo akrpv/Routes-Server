@@ -5,9 +5,9 @@ import routes.data.Place;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Map;
 
-public class Router {
+public class PlaceFilter {
 
-    public Place[] getRoute(Map<Category, Place[]> categoryPlaces, double x, double y) {
+    public Map<Category, Place[]> getNearestPlaces(Category category, int time) {
         throw new NotImplementedException();
     }
 }
