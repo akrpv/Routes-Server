@@ -47,7 +47,7 @@ public class DataWrapper {
 
 
 
-    public static ArrayList<Place> getPlacesByCategoryId(long categoryId) throws  ClassNotFoundException, SQLException {
+    public static ArrayList<Place> getPlacesByCategoryId(long categoryId, double x, double y, double r) throws  ClassNotFoundException, SQLException {
         ArrayList<Place> PlaceList = new ArrayList<>();
 
         Connection connection = getConnection();
