@@ -3,7 +3,7 @@ package routes.data;
 
 import java.sql.*;
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class DataWrapper {
 
@@ -59,7 +59,10 @@ public class DataWrapper {
 
              time = r2.getInt(1);
         }
-        PreparedStatement st = connection.prepareStatement("SELECT Category_id,x,y,name FROM Places WHERE Category_id = " + categoryId);
+
+        String query = String.format("SELECT Category_id, x, y, name FROM Places WHERE Category_id = %d AND ((x - %f) * (x - %f) + (y - %f) * (y - %f) <= %f * %f)",
+                categoryId, x, x, y, y, r, r);
+        PreparedStatement st = connection.prepareStatement(query);
         ResultSet r1 = st.executeQuery();
 
         while(r1.next()){
