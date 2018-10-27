@@ -2,12 +2,18 @@ package routes.data;
 
 public class Category {
 
+    private long id;
     private String name;
     private int time; //in minutes
 
-    public Category(String name, int time) {
+    public Category(long id, String name, int time) {
+        this.id = id;
         this.name = name;
         this.time = time;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {

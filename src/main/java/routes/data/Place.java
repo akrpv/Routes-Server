@@ -5,6 +5,8 @@ public class Place {
     private double x;
     private double y;
     private String name;
+    private String categoryName;
+    private long categoryId;
     private int time; //in minutes
 
     public Place(double x, double y, String name, int time) {
