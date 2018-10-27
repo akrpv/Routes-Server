@@ -12,6 +12,9 @@ public class Category {
         this.time = time;
     }
 
+    public Category(){
+
+    }
     public long getId() {
         return id;
     }

@@ -29,7 +29,21 @@ public class DataWrapper {
         System.out.println("Соединения закрыты");
     }
 
+    public static Category getCategoryById(long id)throws  ClassNotFoundException, SQLException {
+        Connection connection = getConnection();
 
+        PreparedStatement st = connection.prepareStatement("SELECT * FROM Categories WHERE id ="+id);
+        ResultSet r1 = st.executeQuery();
+        Category category = new Category();
+        while(r1.next()){
+                category = new Category(r1.getLong("id"),r1.getString("name"), r1.getInt("time"));
+        }
+
+
+
+        closeDB(connection);
+        return category;
+    }
 
 
 
