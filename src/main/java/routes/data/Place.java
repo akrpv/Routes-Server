@@ -35,4 +35,20 @@ public class Place {
     public int getTime() {
         return time;
     }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 }
