@@ -17,6 +17,12 @@ public class Place {
         this.time = time;
     }
 
+    public Place(double x, double y, String name, int time) {
+        this.x = x;
+        this.y = y;
+        this.name = name;
+        this.time = time;
+    }
 
     public double getX() {
         return x;
