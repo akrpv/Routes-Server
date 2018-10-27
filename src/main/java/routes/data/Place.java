@@ -7,7 +7,7 @@ public class Place {
     private String name;
     private int time; //in minutes
 
-    public Place(int x, int y, String name, int time) {
+    public Place(double x, double y, String name, int time) {
         this.x = x;
         this.y = y;
         this.name = name;
