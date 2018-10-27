@@ -1,0 +1,48 @@
+package routes.data;
+
+public class Place {
+
+    private double x;
+    private double y;
+    private String name;
+    private int time; //in minutes
+
+    public Place(int x, int y, String name, int time) {
+        this.x = x;
+        this.y = y;
+        this.name = name;
+        this.time = time;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+}
