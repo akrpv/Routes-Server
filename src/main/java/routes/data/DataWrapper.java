@@ -11,9 +11,7 @@ public class DataWrapper {
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
 
         Connection conn;
-        String dburl = "jdbc:sqlite:/Users/aleksandrkurapov/IdeaProjects/Routes-Server/Routes_db.db";
-
-
+        String dburl = "jdbc:sqlite:./Routes_db.db";
         conn = null;
         Class.forName("org.sqlite.JDBC");
         conn = DriverManager.getConnection(dburl);
