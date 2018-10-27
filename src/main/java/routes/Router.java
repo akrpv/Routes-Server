@@ -9,7 +9,7 @@ class Router {
     Place[] getRoute(Map<Category, Place[]> categoryPlaces, double x, double y) {
         Place[] places = new Place[categoryPlaces.size()];
         int counter = 0;
-        Place curPlace = new Place(x,y,"startplace",0,0);
+        Place curPlace = new Place(x,y,"curPlace",0);
         for (Category category: categoryPlaces.keySet()){
             double curDist = 100000000;// выбрал это чтоб наверняка, как в плюсах
             for (Place place: categoryPlaces.get(category)){
