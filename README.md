@@ -13,7 +13,7 @@
 >&nbsp;&nbsp;&nbsp;&nbsp;"category": categoryName<br>
 >&nbsp;&nbsp;&nbsp;&nbsp;"time": minutes<br>
 >},...]
-<br>
+
 <b>GET /categories</b><br>
 >Response:<br>
 >["cat1", "cat2", "cat3", ...]
