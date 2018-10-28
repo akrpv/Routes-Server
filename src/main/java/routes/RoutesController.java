@@ -3,11 +3,12 @@ package routes;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import routes.data.Category;
 import routes.data.DataWrapper;
 import routes.data.Place;
@@ -37,10 +38,13 @@ public class RoutesController {
     }
 
     @RequestMapping(value = "/route-points", method = RequestMethod.GET)
-    public Place[] getRoutePoints(@RequestParam(value="time") int time,
-                                      @RequestParam(value="start") String start,
-                                      @RequestParam(value="categories") String categories) throws Exception {
+    public ResponseEntity<String> getRoutePoints(@RequestParam(value="time") int time,
+                                     @RequestParam(value="start") String start,
+                                     @RequestParam(value="categoryIds") String categories) throws Exception {
         System.out.println("GET request was received by route-points controller. System time: " + System.currentTimeMillis());
+        System.out.println("time = " + time);
+        System.out.println("start = " + start);
+        System.out.println("categories = " + categories);
         String[] categoryIds = categories.split(",");
         String[] xy = start.split(",");
         double x = Double.parseDouble(xy[0]);
@@ -50,6 +54,18 @@ public class RoutesController {
             categoryObjects[i] = DataWrapper.getCategoryById(Integer.parseInt(categoryIds[i]));
         }
         Map<Category, Place[]> categoryPlaces = new PlaceFilter().getNearestPlaces(categoryObjects, time, x, y);
-        return new Router().getRoute(categoryPlaces, x, y);
+        JSONArray jsonArray = new JSONArray();
+        Place[] places = new Router().getRoute(categoryPlaces, x, y);
+        for (Place place: places) {
+            jsonArray.put(new JSONObject()
+                    .put("x", place.getX())
+                    .put("y", place.getY())
+                    .put("name", place.getName())
+                    .put("categoryId", place.getCategoryId())
+                    .put("time", place.getTime()));
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Data", jsonArray.toString());
+        return new ResponseEntity<String>("", headers, HttpStatus.OK);
     }
 }
