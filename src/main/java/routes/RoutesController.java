@@ -3,6 +3,7 @@ package routes;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import javafx.util.Pair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
@@ -53,7 +54,7 @@ public class RoutesController {
         for (int i = 0; i < categoryIds.length; i++) {
             categoryObjects[i] = DataWrapper.getCategoryById(Integer.parseInt(categoryIds[i]));
         }
-        Map<Category, Place[]> categoryPlaces = new PlaceFilter().getNearestPlaces(categoryObjects, time, x, y);
+        ArrayList<Pair<Category, Place[]>> categoryPlaces = new PlaceFilter().getNearestPlaces(categoryObjects, time, x, y);
         JSONArray jsonArray = new JSONArray();
         Place[] places = new Router().getRoute(categoryPlaces, x, y);
         for (Place place: places) {
@@ -66,6 +67,7 @@ public class RoutesController {
         }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Data", jsonArray.toString());
-        return new ResponseEntity<String>("", headers, HttpStatus.OK);
+        System.out.println("Response: " + jsonArray.toString());
+        return new ResponseEntity<>("", headers, HttpStatus.OK);
     }
 }
